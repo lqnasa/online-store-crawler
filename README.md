@@ -1,10 +1,11 @@
 # online-store-crawler
 协助数据组抓取中东网上商城数据
 
-#使用技术
+# 使用技术
 spring + quartz + beetlsql + jsoup + jsonPath + redis + 正则 
 
-表:
+# 表:
+```
 CREATE TABLE `crawler_mobilephone_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '唯一标识(主键)',
   `brand` varchar(200) DEFAULT '' COMMENT '品牌',
@@ -23,3 +24,4 @@ CREATE TABLE `crawler_mobilephone_info` (
   `is_delete` enum('0','1') DEFAULT '0' COMMENT '是否删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4460 DEFAULT CHARSET=utf8mb4;
+```
