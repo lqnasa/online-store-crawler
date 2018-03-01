@@ -1,5 +1,5 @@
 # online-store-crawler
-协助数据组抓取中东网上商城数据
+协助数据组抓取网上商城数据
 
 # 使用技术
 spring + quartz + beetlsql + jsoup + jsonPath + redis + 正则 
