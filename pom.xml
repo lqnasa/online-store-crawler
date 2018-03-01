@@ -167,7 +167,7 @@
 			<properties>
 
 				<!-- mysql start -->
-				<jdbc.url>10.0.0.55:3306/onemt_news_crawler</jdbc.url>
+				<jdbc.url>{IP地址}:3306/{数据库}</jdbc.url>
 				<jdbc.username>root</jdbc.username>
 				<jdbc.password>123456</jdbc.password>
 				<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
@@ -181,11 +181,11 @@
 				<jdbc.breakAfterAcquireFailure>false</jdbc.breakAfterAcquireFailure>
 
 				<!-- mysql end -->
-				<redis.domain>10.0.0.60</redis.domain>
+				<redis.domain>{ip地址}</redis.domain>
 				<redis.port>6379</redis.port>
 				<redis.timeout>1000</redis.timeout>
-				<redis.password>ltzd3600</redis.password>
-				<redis.database>4</redis.database>
+				<redis.password>{密码}</redis.password>
+				<redis.database>{几号数据库}</redis.database>
 
 			</properties>
 		</profile>
