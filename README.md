@@ -17,11 +17,13 @@ CREATE TABLE `crawler_mobilephone_info` (
   `display_size` varchar(200) DEFAULT '' COMMENT '屏幕尺寸',
   `cellular_network_technology` varchar(200) DEFAULT '' COMMENT '网络',
   `color` varchar(200) DEFAULT '' COMMENT '颜色',
-  `list_date` varchar(200) DEFAULT '' COMMENT '上市日期',
-  `prices` varchar(200) DEFAULT '' COMMENT '当前售价',
-  `source_url` varchar(255) DEFAULT NULL,
+  `price` varchar(50) DEFAULT '' COMMENT '当前售价',
+  `original_price` varchar(50) DEFAULT '' COMMENT '原价',
+  `currency_code` varchar(50) DEFAULT '' COMMENT '货币代码',
+  `source_url` varchar(255) DEFAULT '' COMMENT '详情页地址',
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `is_delete` enum('0','1') DEFAULT '0' COMMENT '是否删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4460 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8101 DEFAULT CHARSET=utf8mb4;
+
 ```
