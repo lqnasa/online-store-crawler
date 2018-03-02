@@ -24,8 +24,9 @@ public abstract class AbstractMobilephoneStrategy implements MobilephoneStrategy
 			crawlerMobilephoneInfo.setDisplaySize(getDisplaySize(detailContent));
 			crawlerMobilephoneInfo.setCellularNetworkTechnology(getCellularNetworkTechnology(detailContent));
 			crawlerMobilephoneInfo.setColor(getColor(detailContent));
-			crawlerMobilephoneInfo.setListDate(getListDate(detailContent));
-			crawlerMobilephoneInfo.setPrices(getPrices(detailContent));
+			crawlerMobilephoneInfo.setPrice(getPrice(detailContent));
+			crawlerMobilephoneInfo.setOriginalPrice(getOriginalPrice(detailContent));
+			crawlerMobilephoneInfo.setCurrencyCode(getCurrencyCode(detailContent));
 			crawlerMobilephoneInfo.setSourceUrl(url);
 			crawlerMobilephoneInfoService.insertTemplate(crawlerMobilephoneInfo);
 		}

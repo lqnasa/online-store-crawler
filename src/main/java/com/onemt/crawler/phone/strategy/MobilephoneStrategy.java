@@ -77,20 +77,26 @@ public interface MobilephoneStrategy {
 	String getColor(Document content);
 
 	/**
-	 * 上市日期
-	 * 
-	 * @param content
-	 * @return
-	 */
-	String getListDate(Document content);
-
-	/**
 	 * 当前售价
 	 * 
 	 * @param content
 	 * @return
 	 */
-	String getPrices(Document content);
+	String getPrice(Document content);
+	
+	/**
+	 * 原价
+	 * @param content
+	 * @return
+	 */
+	String getOriginalPrice(Document content); 
+	
+	/**
+	 * 货币代码
+	 * @param content
+	 * @return
+	 */
+	String getCurrencyCode(Document content); 
 
 	default Document getContent(String url) {
 		try {

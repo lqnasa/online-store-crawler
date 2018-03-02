@@ -1,5 +1,6 @@
 package com.onemt.crawler.phone.strategy;
 
+import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,6 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import com.jayway.jsonpath.JsonPath;
 
@@ -37,13 +39,13 @@ public class SouqMobilephoneStrategy extends AbstractMobilephoneStrategy {
 			System.out.println(e.getMessage()+"\n"+data);
 			text = "";
 		}
-		return String.valueOf(text);
+		return String.valueOf(text).trim();
 	}
 
 	public String getTextByCss(Document content, String cssQuery) {
 		Elements select = content.select(String.format(cssText, cssQuery));
 		if (!select.isEmpty()) {
-			return select.first().text();
+			return select.first().text().trim();
 		}
 		return "";
 	}
@@ -55,12 +57,26 @@ public class SouqMobilephoneStrategy extends AbstractMobilephoneStrategy {
 
 	@Override
 	public String getModelNumber(Document content) {
-		return getText(content, "$.Page_Data.product.attributes.Model_Number");
+		String text = getText(content, "$.Page_Data.product.attributes.Model_Number");
+		if(StringUtils.isEmpty(text)){
+			text = getTextByCss(content, "Model Number");
+		}
+		if(StringUtils.isEmpty(text)){
+			text = getText(content, "$.Page_Data.product.name");
+		}
+		return text;
 	}
 
 	@Override
 	public String getOperatingSystem(Document content) {
-		return getText(content, "$.Page_Data.product.attributes.Operating_System_Type");
+		String text = getTextByCss(content, "Operating System Version");
+		if(StringUtils.isEmpty(text)){
+			text = getTextByCss(content, "Operating System Type");
+		}
+		if(StringUtils.isEmpty(text)){
+			text = getText(content, "$.Page_Data.product.attributes.Operating_System_Type");
+		}
+		return text;
 	}
 
 	@Override
@@ -70,17 +86,29 @@ public class SouqMobilephoneStrategy extends AbstractMobilephoneStrategy {
 
 	@Override
 	public String getRom(Document content) {
-		return getText(content, "$.Page_Data.product.attributes.Storage_Capacity");
+		String text = getText(content, "$.Page_Data.product.attributes.Storage_Capacity");
+		if(StringUtils.isEmpty(text)){
+			text = getTextByCss(content, "Storage Capacity");
+		}
+		return text;
 	}
 
 	@Override
 	public String getRam(Document content) {
-		return getTextByCss(content, "Memory RAM");
+		String text = getTextByCss(content, "RAM Memory");
+		if(StringUtils.isEmpty(text)){
+			text = getTextByCss(content, "Memory RAM");
+		}
+		return text;
 	}
 
 	@Override
 	public String getDisplaySize(Document content) {
-		return getText(content, "$.Page_Data.product.attributes['Display_Size_(Inch)']");
+		String text = getText(content, "$.Page_Data.product.attributes['Display_Size_(Inch)']");
+		if(StringUtils.isEmpty(text)){
+			text = getTextByCss(content, "Display Size (Inch)");
+		}
+		return text;
 	}
 
 	@Override
@@ -90,17 +118,33 @@ public class SouqMobilephoneStrategy extends AbstractMobilephoneStrategy {
 
 	@Override
 	public String getColor(Document content) {
-		return getText(content, "$.Page_Data.product.attributes.Color");
+		String text = getText(content, "$.Page_Data.product.attributes.Color");
+		if(StringUtils.isEmpty(text)){
+			text = getTextByCss(content, "Color");
+		}
+		return text;
 	}
 
 	@Override
-	public String getListDate(Document content) {
-		return "";
+	public String getPrice(Document content) {
+		return getText(content, "$.Page_Data.product.price");
 	}
 
 	@Override
-	public String getPrices(Document content) {
-		return String.valueOf(getText(content, "$.Page_Data.product.price"));
+	public String getOriginalPrice(Document content) {
+		String price = getPrice(content);
+		if("null".equals(price)||StringUtils.isEmpty(price)){
+			return getPrice(content);
+		}
+		Double _price = Double.valueOf(price);
+		Double discount = Double.valueOf(getText(content, "$.Page_Data.product.discount"));
+		DecimalFormat df = new DecimalFormat("#.00");
+		return df.format(_price*(1-discount));
+	}
+
+	@Override
+	public String getCurrencyCode(Document content) {
+		return getText(content, "$.Page_Data.product.currencyCode");
 	}
 
 }

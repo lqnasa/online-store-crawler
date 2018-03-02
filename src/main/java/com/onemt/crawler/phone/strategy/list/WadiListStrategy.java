@@ -35,6 +35,10 @@ public class WadiListStrategy implements ListStrategy {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			if(context!=null){
+				context.close();
+			}
 		}
 
 	}
