@@ -19,7 +19,7 @@ public class WadiMobilephoneStrategy extends AbstractMobilephoneStrategy {
 			System.out.println(e.getMessage()+"\n"+str);
 			text = "";
 		}
-		return String.valueOf(text);
+		return String.valueOf(text).trim();
 	}
 
 	@Override
@@ -73,13 +73,18 @@ public class WadiMobilephoneStrategy extends AbstractMobilephoneStrategy {
 	}
 
 	@Override
-	public String getListDate(Document content) {
-		return getText(content, "$.data.simples[0].suppliers[0].delivered_by_date");
+	public String getPrice(Document content) {
+		return String.valueOf(getText(content, "$.data.offerPrice"));
 	}
 
 	@Override
-	public String getPrices(Document content) {
+	public String getOriginalPrice(Document content) {
 		return String.valueOf(getText(content, "$.data.price"));
+	}
+
+	@Override
+	public String getCurrencyCode(Document content) {
+		return "SAR";
 	}
 
 }

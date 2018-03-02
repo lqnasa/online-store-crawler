@@ -34,6 +34,10 @@ public class SouqListStrategy implements ListStrategy {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			if(context!=null){
+				context.close();
+			}
 		}
 
 	}
@@ -50,8 +54,7 @@ public class SouqListStrategy implements ListStrategy {
 
 	public void savePage(String pageUrl) {
 
-		// souqMobilephoneStrategy.saveCrawlerMobilephoneInfo("https://uae.souq.com/ae-en/apple-iphone-6s-plus-with-facetime-64gb-4g-lte-silver-9000887/i/");
-
+		//souqMobilephoneStrategy.saveCrawlerMobilephoneInfo("https://uae.souq.com/ae-en/nokia-6210-navigator-120-mb-wifi-red-5618440/i/");
 		Document contentStr = getContent(pageUrl);
 		List<String> links = contentStr.select("div.list-view div.item-content a[href^=http]").eachAttr("href");
 		links.parallelStream().forEach(link -> {

@@ -21,8 +21,10 @@ public class CrawlerMobilephoneInfo implements Serializable {
 	private String displaySize; // 屏幕尺寸
 	private String cellularNetworkTechnology; // 网络
 	private String color; // 颜色
-	private String listDate; // 上市日期
-	private String prices; // 当前售价
+	// private String listDate; // 上市日期 删除该字段,原因无法获取
+	private String price; // 当前售价
+	private String originalPrice; // 原价
+	private String currencyCode; // 货币代码
 	private String sourceUrl; // 详情页地址
 	private String createTime;
 	private String is_delete;
@@ -107,20 +109,28 @@ public class CrawlerMobilephoneInfo implements Serializable {
 		this.color = color;
 	}
 
-	public String getListDate() {
-		return listDate;
+	public String getPrice() {
+		return price;
 	}
 
-	public void setListDate(String listDate) {
-		this.listDate = listDate;
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
-	public String getPrices() {
-		return prices;
+	public String getOriginalPrice() {
+		return originalPrice;
 	}
 
-	public void setPrices(String prices) {
-		this.prices = prices;
+	public void setOriginalPrice(String originalPrice) {
+		this.originalPrice = originalPrice;
+	}
+
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
+
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
 	}
 
 	public String getSourceUrl() {

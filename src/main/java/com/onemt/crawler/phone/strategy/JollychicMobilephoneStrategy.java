@@ -84,13 +84,20 @@ public class JollychicMobilephoneStrategy extends AbstractMobilephoneStrategy {
 	}
 
 	@Override
-	public String getListDate(Document content) {
-		return "";
+	public String getPrice(Document content) {
+		return content.selectFirst("span.jolly-price").text();
 	}
 
+
 	@Override
-	public String getPrices(Document content) {
-		return content.selectFirst("span.jolly-price").text();
+	public String getOriginalPrice(Document content) {
+		return null;
+	}
+
+
+	@Override
+	public String getCurrencyCode(Document content) {
+		return null;
 	}
 
 }
