@@ -134,7 +134,7 @@ public class SouqMobilephoneStrategy extends AbstractMobilephoneStrategy {
 	public String getOriginalPrice(Document content) {
 		String price = getPrice(content);
 		if("null".equals(price)||StringUtils.isEmpty(price)){
-			return getPrice(content);
+			return price;
 		}
 		Double _price = Double.valueOf(price);
 		Double discount = Double.valueOf(getText(content, "$.Page_Data.product.discount"));
